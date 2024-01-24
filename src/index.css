@@ -139,3 +139,25 @@ span {
     height: 240px;
     object-fit: cover;
 }
+.menu-banner {
+    background-image: url('../public/assets/menu/banner3.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 12% 16% 6%;
+    text-transform: uppercase;
+    font-family: Cinzel, serif;
+}
+.menu-txt-b {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10%;
+    
+}
+.menu-txt-b h1 {
+    font-size: 60px;
+}
+.menu-cover-bg {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.menu-bg-p {
+    padding: 100px 200px;
+}
