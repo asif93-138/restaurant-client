@@ -1,0 +1,141 @@
+.nav-item a {
+    color: white;
+}
+
+.btn-nav {
+    
+    background-color: white;
+    color: black;
+    
+}
+.bg-dark-tp {
+    background-color: rgba(0, 0, 0, 0.5);
+
+}
+.bg-cstm-fa {
+    background-color: #111827 !important;
+}
+.bg-cstm-fb {
+    background-color: #1F2937 !important;
+}
+.sw-cap {
+    position: absolute;
+    bottom: 20px;
+    left: 70px;
+}
+.sw-p {
+    position: relative;
+}
+.st-sh {
+    color: #D99904;
+}
+.bg-img-cstm {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../public/assets/home/featured.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+.img-ft {
+    width: 35%;
+}
+.art-ft {
+    width: 35%;
+}
+.btn-ft {
+    color: white;
+    border: 0;
+    border-bottom: 2px solid white;
+}
+.btn-ft:hover {
+    background-color: white;
+    color: black;
+    border: 1px solid white;
+}
+.review-col {
+    color: #CD9003;
+}
+.nav-logo {
+    font-family: Georgia, Times, serif;
+    line-height: normal;
+}
+span {
+    font-size: 12px;
+    margin-right: 7px;
+}
+.active-lnk {
+    color: #EEFF25 !important;
+    text-decoration: none;
+    padding: 8px;
+    line-height: 40px;
+}
+.animated {
+    text-align: center;
+}
+.swiper-img {
+    width: 92%;
+}
+.cstm-swiper > div {
+    margin: auto 50px;
+}
+.swiper-pagination {
+    position: static;
+    margin-top: 20px;
+}
+.thumb img {
+    height: auto !important;
+}
+.ft-cover {
+    font-family: Cinzel, serif;
+    font-variant: small-caps;
+}
+.ft-cover-bg {
+    background-image: url('../public/assets/home/chef-service.jpg');
+    
+    width: 76%;
+    padding: 80px;
+    margin-top: 60px;
+    background-position: 45% 20%;
+}
+.fake-img {
+    width: 115px;
+    height: 6vw;
+    background-color: #d9d9d9;
+    border-radius: 0 50% 50% 50%;
+}
+.menu-item-h {
+    font-family: Cinzel, serif;
+    font-weight: 400;
+}
+.price {
+    color: #BB8506;
+}
+.grid-boxing {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 25px;
+}
+.menu-btn {
+    border: 0;
+    border-bottom: 2px solid;
+}
+.r-font {
+    font-family: Raleway, serif;
+    width: 80%;
+}
+.r-font sub {
+    bottom: -2px;
+}
+.btn-ch {
+    background-color: #E8E8E8;
+    color: #BB8506;
+    border: 0;
+    border-bottom: 2px solid #BB8506;
+}
+.btn-ch:hover {
+    background-color: #1F2937;
+    color: #BB8506;
+    border: 1px solid black;
+}
+.img-ch {
+    height: 240px;
+    object-fit: cover;
+}
