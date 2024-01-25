@@ -10,6 +10,9 @@ import { HelmetProvider } from 'react-helmet-async';
 import Home from './Home.jsx';
 import Menu from './Menu.jsx';
 import Contact from './Contact.jsx';
+import Order from './Order.jsx';
+import Login from './Login.jsx';
+import Signup from './Signup.jsx';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +30,18 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/order",
+        element: <Order />
+      },
+      {
+        path: "/login",
+        element: <Login />
+      },
+      {
+        path: "/signup",
+        element: <Signup />
       },
     ],
   },

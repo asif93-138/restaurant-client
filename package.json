@@ -17,7 +17,9 @@
     "react-helmet-async": "^2.0.4",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.21.1",
+    "react-tabtab": "^2.0.0",
     "sort-by": "^0.0.2",
+    "styled-components": "^4.0.0",
     "swiper": "^11.0.5"
   },
   "devDependencies": {

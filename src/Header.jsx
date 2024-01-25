@@ -27,11 +27,14 @@ function myFunction() {
                 <NavLink className={({isActive}) => isActive ? "active-lnk" : "nav-link"} to="/menu"><b>Menu</b></NavLink>
               </li>
               <li className="nav-item mx-1">
+                <NavLink className={({isActive}) => isActive ? "active-lnk" : "nav-link"} to="/order"><b>Order</b></NavLink>
+              </li>
+              <li className="nav-item mx-1">
                 <NavLink className={({isActive}) => isActive ? "active-lnk" : "nav-link"} to="/contact"><b>Contact</b></NavLink>
               </li>
             </ul>
           
-              <Link><button className="btn btn-dark btn-nav ms-2" type="button"><b>Login</b></button></Link>
+              <NavLink className={({isActive}) => isActive ? "active-lnk" : ""} to="/login"><button className="btn btn-dark btn-nav ms-2" type="button"><b>Login</b></button></NavLink>
       
           </div>
         </div>

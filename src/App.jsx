@@ -36,7 +36,7 @@ function App() {
   return (
     <>
                 <Helmet>
-                <title>Home</title>
+                <title>Home | Bistro Boss</title>
             </Helmet>
           
            

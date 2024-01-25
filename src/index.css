@@ -67,6 +67,10 @@ span {
     padding: 8px;
     line-height: 40px;
 }
+.active-lnk button {
+    color: #EEFF25;
+    background-color: black;
+}
 .animated {
     text-align: center;
 }
@@ -160,4 +164,60 @@ span {
 }
 .menu-bg-p {
     padding: 100px 200px;
+}
+.nav-tabs {
+    justify-content: center;
+    border: 0;
+}
+.nav-tabs a {
+    color: black;
+}
+.nav-tabs .active {
+    color: #BB8506 !important;
+    border: 0;
+    border-bottom: 2px solid #BB8506 !important;
+}
+.nav-tabs .nav-link:hover {
+    border: 0;
+}
+.nav-tabs .nav-link {
+    transition: initial;
+}
+.tab-content .active {
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+.ct-box-bg {
+    background-color: #D1A054;
+}
+.ct-box-bg + p {
+    height: 100px;
+}
+.btn-contact {
+    background: linear-gradient(90deg, #835D23 0%, #B58130 100%);
+    color: white;
+    border: 1px solid #BB8506;
+    border-radius: 0;
+}
+.btn-contact:hover {
+    background-color: transparent;
+    background-image: none;
+    color: #D1A054;
+    border: 1px solid #BB8506;
+}
+.btn-login {
+    background: #D1A054;;
+    color: white;
+    border: 1px solid #D1A054;;
+    border-radius: 0;
+}
+.btn-login:hover {
+    background: white;;
+    color: #D1A054;
+    border: 1px solid #D1A054;;
+    border-radius: 0;
+}
+.login {
+    margin-top: 150px;
+    background-image: url('../public/assets/others/authentication.png');
 }

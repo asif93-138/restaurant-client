@@ -8,7 +8,7 @@ const Menu = () => {
     return (
         <div>
             <Helmet>
-                <title>Menu</title>
+                <title>Menu | Bistro Boss</title>
             </Helmet>
             <section className='menu-banner'>
                 <div className='text-center text-white menu-txt-b'>
