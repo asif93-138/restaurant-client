@@ -1,9 +1,30 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import app from '../firebase.config';
 import img from '../public/assets/others/auth.png';
 
 const Login = () => {
+  function userSignIn(event) {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    // console.log(email, password);
+    const auth = getAuth(app);
+    signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    form.reset();
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message; console.log(errorCode, errorMessage);
+  });
+}
     return (
         <div>
             <Helmet>
@@ -11,7 +32,7 @@ const Login = () => {
             </Helmet>
                             <section className='container p-5 login d-flex justify-content-between align-items-center'>
                             <img src={img} className='w-50 p-4' />                                
-                            <form className='w-50 p-4'><h2 className='text-center'>Login</h2>
+                            <form onSubmit={userSignIn} className='w-50 p-4'><h2 className='text-center'>Login</h2>
  
  <div className="mb-3 mt-3">
    <label htmlFor="email"><b>Email:</b></label>

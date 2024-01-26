@@ -13,6 +13,7 @@ import Contact from './Contact.jsx';
 import Order from './Order.jsx';
 import Login from './Login.jsx';
 import Signup from './Signup.jsx';
+import AuthProvider from '../AuthProvider.jsx';
 
 const router = createBrowserRouter([
   {
@@ -50,7 +51,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <HelmetProvider>
+      <AuthProvider>
       <RouterProvider router={router} />
+      </AuthProvider>
     </HelmetProvider>
   </React.StrictMode>,
 )

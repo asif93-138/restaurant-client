@@ -222,6 +222,15 @@ span {
     margin-top: 150px;
     background-image: url('../public/assets/others/authentication.png');
 }
+.btn-so {
+    color: white;
+}
+.btn-so:hover {
+    color: rgba(255, 255, 255, 0.75);
+}
+.btn-so b {
+    line-height: 50px;
+}
 
 
 @media screen and (max-width: 992px) {

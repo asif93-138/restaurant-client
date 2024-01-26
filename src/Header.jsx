@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../AuthProvider';
+import { getAuth, signOut } from "firebase/auth";
+import app from '../firebase.config';
 
 const Header = () => {
- 
+  const {user, loading} = useContext(AuthContext); console.log(user, (!loading));
+  function userSO() {
+    const auth = getAuth(app);
+signOut(auth).then(() => {
+  // Sign-out successful.
+}).catch((error) => {
+  // An error happened.
+});
+  }
   window.onscroll = function() {myFunction()};
 function myFunction() {
   if (document.documentElement.scrollTop > 550) {
@@ -33,8 +44,14 @@ function myFunction() {
                 <NavLink className={({isActive}) => isActive ? "active-lnk" : "nav-link"} to="/contact"><b>Contact</b></NavLink>
               </li>
             </ul>
-          
-              <NavLink className={({isActive}) => isActive ? "active-lnk" : ""} to="/login"><button className="btn btn-dark btn-nav ms-2" type="button"><b>Login</b></button></NavLink>
+{ (!loading) && 
+  <>
+  { user ?
+    <button onClick={userSO} type='button' className='btn btn-so p-0'><b className=''>Log Out</b> <i className="bi fs-4 ms-2 bi-person-circle"></i></button> :
+    <NavLink className={({isActive}) => isActive ? "active-lnk" : ""} to="/login"><button className="btn btn-dark btn-nav ms-2" type="button"><b>Login</b></button></NavLink>
+}
+  </>
+}
       
           </div>
         </div>
