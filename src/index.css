@@ -33,6 +33,7 @@
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../public/assets/home/featured.jpg');
     background-size: cover;
     background-attachment: fixed;
+    padding-bottom: 60px;
 }
 .img-ft {
     width: 35%;
@@ -220,4 +221,46 @@ span {
 .login {
     margin-top: 150px;
     background-image: url('../public/assets/others/authentication.png');
+}
+
+
+@media screen and (max-width: 992px) {
+    .cstm-swiper > div {
+        margin: auto;
+    }
+    .sw-cap {
+        left: 35px;
+    }   
+    .mi-lining {
+        display: none;
+    } 
+    .menu-item-h {
+        margin: 0;
+    }
+    .img-ch {
+        height: 180px;
+    }
+    .card-body {
+        padding-top: 0;
+    }
+    .card-text {
+        line-height: 18px;
+    }
+    .ct-box-bg + p {
+        height: auto;
+    }
+}
+
+
+@media screen and (min-width: 1800px) {
+    .fake-img {
+        height: auto;
+    }
+    .img-ch {
+        height: 16vw;
+    }
+    .menu-p-sub-c {
+        background-position: initial;
+        background-size: cover;
+    }
 }

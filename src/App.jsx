@@ -111,7 +111,7 @@ function App() {
 </section>
 <section className='container my-5'>
         <SectionTitle subHeading='---Should Try---' heading='CHEF RECOMMENDS'></SectionTitle>
-        <div className='d-flex m-5'>
+        <div className='d-flex m-lg-5'>
         <div className="card m-3 border-0">
     <img className="card-img-top img-ch" src={slide1} alt="Card image" />
     <div className="card-body text-center bg-light">
@@ -138,7 +138,7 @@ function App() {
   </div>
         </div>
 </section>
-<section style={{height: customHeight}} className='bg-img-cstm'>
+<section className='bg-img-cstm'>
 <div className='text-center pt-5 my-5'>
             <p className='st-sh'>---Check it out---</p>
             <hr className='text-white' style={{width: '35%', margin: 'auto'}} />
