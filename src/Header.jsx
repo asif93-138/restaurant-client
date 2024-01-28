@@ -5,7 +5,7 @@ import { getAuth, signOut } from "firebase/auth";
 import app from '../firebase.config';
 
 const Header = () => {
-  const {user, loading} = useContext(AuthContext); console.log(user, (!loading));
+  const {user, loading} = useContext(AuthContext);
   function userSO() {
     const auth = getAuth(app);
 signOut(auth).then(() => {

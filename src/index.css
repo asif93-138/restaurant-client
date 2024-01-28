@@ -101,9 +101,8 @@ span {
     background-position: 45% 20%;
 }
 .fake-img {
-    width: 115px;
-    height: 6vw;
-    background-color: #d9d9d9;
+    width: 110px;
+    height: 5.8vw;
     border-radius: 0 50% 50% 50%;
 }
 .menu-item-h {
@@ -230,6 +229,9 @@ span {
 }
 .btn-so b {
     line-height: 50px;
+}
+.btn-so i {
+    vertical-align: sub; 
 }
 
 

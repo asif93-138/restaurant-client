@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
@@ -31,6 +31,19 @@ import PopularMenu from './PopularMenu';
 import Header from './Header';
 
 function App() {
+  const [reviews, setReviews] = useState([]);
+  useEffect(() => {
+    fetch('reviews.json')
+    .then(res => res.json())
+    .then(data => setReviews(data))
+  }, [])
+  if (reviews.length != 0 && typeof reviews[0].rating == 'number') {
+    for (let x of reviews) {
+      let arr = [];
+      for (let i = 1; i <= x.rating; i++) {arr.push(i);}
+      x.rating = arr;
+    }
+  }
   const customHeight = window.innerWidth * 900 / 1920;
   const customHeight1 = window.innerWidth * 804 / 1920;
   return (
@@ -160,39 +173,15 @@ function App() {
 <div id="carouselExampleDark" className="carousel carousel-dark slide text-center">
 
   <div className="carousel-inner">
-    <div className="carousel-item active" data-bs-interval="10000">
-      <i className="review-col fs-3 bi bi-star-fill mx-2"></i>
-      <i className="review-col fs-3 bi bi-star-fill mx-2"></i>
-      <i className="review-col fs-3 bi bi-star-fill mx-2"></i>
-      <i className="review-col fs-3 bi bi-star-fill mx-2"></i>
-      <i className="review-col fs-3 bi bi-star-fill mx-2"></i>
-      <br /><i style={{fontSize: '80px'}} className="bi bi-quote"></i>
-      <p className='w-50 mx-auto'>Various version have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-      <h3 className='review-col'>JANE DOE</h3>
+  {
+    reviews.map(x =>     <div key={x._id} className={(reviews[0] == x) ? "carousel-item active" : "carousel-item" } data-bs-interval="10000">
+    {x.rating.map(y => <i key={x.rating.indexOf(y) + 1} className="review-col fs-3 bi bi-star-fill mx-2"></i>)}
+    <br /><i style={{fontSize: '80px'}} className="bi bi-quote"></i>
+    <p className='w-50 mx-auto'>{x.details}</p>
+    <h3 className='review-col'>{x.name}</h3>
 
-    </div>
-    <div className="carousel-item" data-bs-interval="2000">
-      <i className="review-col fs-3 bi bi-star-fill mx-2"></i>
-      <i className="review-col fs-3 bi bi-star-fill mx-2"></i>
-      <i className="review-col fs-3 bi bi-star-fill mx-2"></i>
-      <i className="review-col fs-3 bi bi-star-fill mx-2"></i>
-      <i className="review-col fs-3 bi bi-star-fill mx-2"></i>
-      <br /><i style={{fontSize: '80px'}} className="bi bi-quote"></i>
-      <p className='w-50 mx-auto'>Various version have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-      <h3 className='review-col'>JANE DOE</h3>
-
-    </div>
-    <div className="carousel-item">
-      <i className="review-col fs-3 bi bi-star-fill mx-2"></i>
-      <i className="review-col fs-3 bi bi-star-fill mx-2"></i>
-      <i className="review-col fs-3 bi bi-star-fill mx-2"></i>
-      <i className="review-col fs-3 bi bi-star-fill mx-2"></i>
-      <i className="review-col fs-3 bi bi-star-fill mx-2"></i>
-      <br /><i style={{fontSize: '80px'}} className="bi bi-quote"></i>
-      <p className='w-50 mx-auto'>Various version have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-      <h3 className='review-col'>JANE DOE</h3>
-
-    </div>
+  </div>)
+   }
   </div>
   <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
     <span className="carousel-control-prev-icon" aria-hidden="true"></span>

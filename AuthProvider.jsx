@@ -17,7 +17,13 @@ const AuthProvider = ({children}) => {
 			unsubscribe();
 		}
 	}, [])
-	const authInfo = { user, setUser, loading};
+	const [menu, setMenu] = useState([]);
+    useEffect(() => {
+        fetch('menu.json')
+        .then(res => res.json())
+        .then(data => setMenu(data))
+    }, [])
+	const authInfo = { user, setUser, loading, menu};
 
 	return (
 	  <AuthContext.Provider value= {authInfo}>

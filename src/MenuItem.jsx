@@ -1,14 +1,15 @@
 import React from 'react';
 
-const MenuItem = () => {
+const MenuItem = ({menu}) => {
+    
     return (
         <div className='d-flex'>
-                                <div className='fake-img'></div>
+                                <img src={menu.image} className='fake-img' />
                         <div className='text-secondary mx-4'>
-                        <h6 className='menu-item-h'>ROAST DUCK BREAST <span className='mi-lining'>------------------</span></h6>
-                    <p><small>Roasted duck breast (served pink) with gratin potato and a griottine cherry sauce</small></p>
+                        <h5 className='menu-item-h'>{menu.name} <span className='mi-lining'>------------------</span></h5>
+                    <p><small>{menu.recipe}</small></p>
                         </div>
-                    <p className='price'>$14.5</p>
+                    <p className='price'>{menu.price}</p>
         </div>
     );
 };

@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Helmet } from 'react-helmet-async';
 import MenuCoverBG from './MenuCoverBG';
 import SectionTitle from './SectionTitle';
 import MenuItem from './MenuItem';
+import { AuthContext } from '../AuthProvider';
+import { Link } from 'react-router-dom';
 
 const Menu = () => {
+    const {menu} = useContext(AuthContext);
+    let offeredMenu = menu.filter(x => x.category == "offered");
+    let dessertsMenu = menu.filter(x => x.category == "dessert");
+    let pizzaMenu = menu.filter(x => x.category == "pizza");
+    let saladMenu = menu.filter(x => x.category == "salad");
+    let soupMenu = menu.filter(x => x.category == "soup");
+    
     return (
         <div>
             <Helmet>
@@ -19,62 +28,49 @@ const Menu = () => {
             <SectionTitle subHeading="---Don't miss---" heading="TODAY'S OFFER"></SectionTitle>
            
             <div className='container grid-boxing mb-3'>
-                <MenuItem />
-                <MenuItem />
-                <MenuItem />
-                <MenuItem />
+            {
+                        offeredMenu.map(x => <MenuItem key={x._id} menu={x}></MenuItem>)
+                    }
 
                 </div>
          
-            <div className='text-center'><button type='button' className='btn btn-outline-dark menu-btn'>ORDER YOUR FAVORITE FOOD</button></div>
+            <div className='text-center'><Link to='/order'><button type='button' className='btn btn-outline-dark menu-btn'>ORDER YOUR FAVORITE FOOD</button></Link></div>
            
             <MenuCoverBG heading='DESSERTS'></MenuCoverBG>
             <div className='container grid-boxing my-5'>
-                <MenuItem />
-                <MenuItem />
-                <MenuItem />
-                <MenuItem />
-                <MenuItem />
-                <MenuItem />
+            {
+                        dessertsMenu.map(x => <MenuItem key={x._id} menu={x}></MenuItem>)
+                    }
                 </div>
          
-            <div className='text-center'><button type='button' className='btn btn-outline-dark menu-btn'>ORDER YOUR FAVORITE FOOD</button></div>
+            <div className='text-center'><Link to='/order'><button type='button' className='btn btn-outline-dark menu-btn'>ORDER YOUR FAVORITE FOOD</button></Link></div>
            
             <MenuCoverBG heading='PIZZA'></MenuCoverBG>
             <div className='container grid-boxing my-5'>
-                <MenuItem />
-                <MenuItem />
-                <MenuItem />
-                <MenuItem />
-                <MenuItem />
-                <MenuItem />
+            {
+                        pizzaMenu.map(x => <MenuItem key={x._id} menu={x}></MenuItem>)
+                    }
                 </div>
          
-            <div className='text-center'><button type='button' className='btn btn-outline-dark menu-btn'>ORDER YOUR FAVORITE FOOD</button></div>
+            <div className='text-center'><Link to='/order'><button type='button' className='btn btn-outline-dark menu-btn'>ORDER YOUR FAVORITE FOOD</button></Link></div>
            
             <MenuCoverBG heading='SALADS'></MenuCoverBG>
             <div className='container grid-boxing my-5'>
-                <MenuItem />
-                <MenuItem />
-                <MenuItem />
-                <MenuItem />
-                <MenuItem />
-                <MenuItem />
+            {
+                       saladMenu.map(x => <MenuItem key={x._id} menu={x}></MenuItem>)
+                    }
                 </div>
          
-            <div className='text-center'><button type='button' className='btn btn-outline-dark menu-btn'>ORDER YOUR FAVORITE FOOD</button></div>
+            <div className='text-center'><Link to='/order'><button type='button' className='btn btn-outline-dark menu-btn'>ORDER YOUR FAVORITE FOOD</button></Link></div>
            
             <MenuCoverBG heading='SOUPS'></MenuCoverBG>
             <div className='container grid-boxing my-5'>
-                <MenuItem />
-                <MenuItem />
-                <MenuItem />
-                <MenuItem />
-                <MenuItem />
-                <MenuItem />
+            {
+                        soupMenu.map(x => <MenuItem key={x._id} menu={x}></MenuItem>)
+                    }
                 </div>
          
-            <div className='text-center'><button type='button' className='btn btn-outline-dark menu-btn'>ORDER YOUR FAVORITE FOOD</button></div>
+            <div className='text-center'><Link to='/order'><button type='button' className='btn btn-outline-dark menu-btn'>ORDER YOUR FAVORITE FOOD</button></Link></div>
         </div>
     );
 };
