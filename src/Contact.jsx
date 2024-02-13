@@ -1,9 +1,38 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Helmet } from 'react-helmet-async';
 import bg from '../public/assets/contact/banner.jpg';
 import SectionTitle from './SectionTitle';
+import { AuthContext } from '../AuthProvider';
 
 const Contact = () => {
+  const {user} = useContext(AuthContext);
+  function submitContact(event) {
+    event.preventDefault();
+    if (user) {
+      const form = event.target;
+      const name = form.name.value;
+      const email = form.email.value;
+      const phone = form.phone.value;
+      const message = form.message.value;
+      const contactObj = {name, email, phone, message};
+      console.log(user.uid, contactObj);
+      fetch('https://bistro-restaurant-server-eight.vercel.app/contact', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify({user: user.uid, contactObj: contactObj})
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.acknowledged) {
+          form.reset();
+          alert('Thanks for contacting Us!');
+        }
+      })
+    }
+    else {alert('Please login first!')}
+  }
     return (
         <div>
                         <Helmet>
@@ -34,14 +63,14 @@ const Contact = () => {
             </section>
             <section className='container pb-5 px-4'>
                 <SectionTitle subHeading='---Send Us a Message---' heading='CONTACT FORM'></SectionTitle>
-                <form className='bg-light p-5'>
+                <form className='bg-light p-5' onSubmit={submitContact}>
                 <div className="mb-3 mt-3">
       <label htmlFor="name"><b>Name:</b></label>
       <input type="name" className="form-control" id="name" placeholder="Enter name" name="name" />
     </div>
     <div className="mb-3 mt-3">
       <label htmlFor="email"><b>Email:</b></label>
-      <input type="email" className="form-control" id="email" placeholder="Enter email" name="email" />
+      <input type="email" className="form-control" id="email" placeholder="Enter email" name="email" required />
     </div>
     <div className="mb-3 mt-3">
       <label htmlFor="phone"><b>Phone:</b></label>
@@ -49,11 +78,11 @@ const Contact = () => {
     </div>
     <div className="mb-3 mt-3">
       <label htmlFor="message"><b>Message:</b></label>
-      <textarea style={{resize: 'none'}} className="form-control" rows="5" id="message" placeholder="Your message" name="message"></textarea>
+      <textarea style={{resize: 'none'}} className="form-control" rows="5" id="message" placeholder="Your message" name="message" required></textarea>
     </div>
     <div className="form-check mb-3">
       <label className="form-check-label">
-        <input className="form-check-input" type="checkbox" name="remember" /> I'm not a Robot!
+        <input className="form-check-input" type="checkbox" name="remember" required /> I'm not a Robot!
       </label>
     </div>
     <div className='text-center'><button type="submit" className="btn btn-primary btn-contact"><b>Send Message <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none">

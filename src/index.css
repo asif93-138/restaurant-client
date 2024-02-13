@@ -3,14 +3,11 @@
 }
 
 .btn-nav {
-    
     background-color: white;
     color: black;
-    
 }
 .bg-dark-tp {
     background-color: rgba(0, 0, 0, 0.5);
-
 }
 .bg-cstm-fa {
     background-color: #111827 !important;
@@ -154,7 +151,6 @@ span {
 .menu-txt-b {
     background-color: rgba(0, 0, 0, 0.5);
     padding: 10%;
-    
 }
 .menu-txt-b h1 {
     font-size: 60px;
@@ -187,8 +183,8 @@ span {
     display: grid;
     grid-template-columns: auto auto auto;
 }
-.ct-box-bg {
-    background-color: #D1A054;
+.ct-box-bg, .dashboard-bg {
+    background-color: #D1A054 !important;
 }
 .ct-box-bg + p {
     height: 100px;
@@ -221,19 +217,101 @@ span {
     margin-top: 150px;
     background-image: url('../public/assets/others/authentication.png');
 }
-.btn-so {
+.card {
+    position: relative;
+}
+.o-pt {
+    position: absolute;
+    left: 79%;
+    top: 3%;
+}
+.toast {
+    position: fixed;
+    top: 5%;
+    left: 40%;
+    z-index: 1031;
+}
+.btn-close {
+    background-image: url();
+    color: red;
+}
+.btn-close:hover {
+    background-image: url();
+    color: red;
+    font-weight: 700;
+}
+.tab-content .active {
+    display: block;
+}
+.active article {
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+.pagination li {
+    margin: 0 8px;
+}
+.page-link {
+    color: #BB8506;
+    border: 0.5px solid #b8a780;
+}
+.page-link:hover {
+    color: #BB8506;
+    border: 0.5px solid #b8a780;
+}
+.active>.page-link, .page-link.active {
     color: white;
+    background-color: #BB8506;
+    border-color: #BB8506;
 }
-.btn-so:hover {
-    color: rgba(255, 255, 255, 0.75);
+.active > .page-link:hover {
+    background-color: #e7a408;
 }
-.btn-so b {
-    line-height: 50px;
+.cart-number {
+    border: 1px solid #EEFF25;
+    background-color: #EEFF25;
+    color: black;
+    bottom: 0;
+    left: 11px;
+    padding: 0 6px
 }
-.btn-so i {
-    vertical-align: sub; 
+.bi-cart4 {
+    color: white;
+    line-height: inherit;
+}
+.user {
+    vertical-align: text-bottom;
+}
+.user-b:hover {
+    color: rgba(255, 255, 255, 0.6) !important;
 }
 
+.profile-counter-bg {
+    background-image: linear-gradient(to right, #BB34F5, #FCDBFF);
+}
+.profile-counter1-bg {
+    background-image: linear-gradient(to right, #D3A256, #FDE8C0);
+}
+.dash-s1-bg {
+    background-color: #FFEDD4;
+    border-right: solid #D1A054;
+}
+.dash-s2-bg {
+    background-color: #FEF9C3;
+}
+.img-profile {
+    background-color: white;
+    border: solid #D1A054;
+    width: 150px;
+    height: 150px;
+}
+.active-lnk-db button {
+    color: white;
+}.active-lnk-db button:hover {
+    color: white;
+}
+.nav-link-bd:hover {
+    border: 1px solid black;
+}
 
 @media screen and (max-width: 992px) {
     .cstm-swiper > div {

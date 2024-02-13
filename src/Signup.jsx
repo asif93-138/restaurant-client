@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import img from '../public/assets/others/auth.png';
-import { Link } from 'react-router-dom';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { Link, useNavigate } from 'react-router-dom';
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import app from '../firebase.config';
 
 const Signup = () => {
+    const [error, setError] = useState('');
     const [user, setUser] = useState(null);
+    const navigate = useNavigate();
     function userSignUp(event) {
         event.preventDefault();
         const form = event.target;
@@ -18,13 +20,24 @@ const Signup = () => {
 createUserWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     // Signed up 
-    const user = userCredential.user; console.log(user); setUser(user);
+    const user = userCredential.user;
+    updateProfile(auth.currentUser, {
+      displayName: name
+    }).then(() => {
+      // Profile updated!
+      // ...
+    }).catch((error) => {
+      // An error occurred
+      // ...
+    });
+    setUser(user);
+    setError('');
     form.reset();
-    // ...
+    navigate("/");
   })
   .catch((error) => {
     const errorCode = error.code;
-    const errorMessage = error.message; console.log(errorCode, errorMessage);
+    const errorMessage = error.message; console.log(errorCode, errorMessage); setError(errorMessage);
     // ..
   });
        
@@ -50,11 +63,10 @@ createUserWithEmailAndPassword(auth, email, password)
 <label htmlFor="password"><b>Password:</b></label>
 <input type="password" className="mt-2 form-control p-3" id="password" placeholder="Enter password" name="password" />
 </div>
-
+{error && <p className='text-danger'><b>{error}</b></p>}
 <div className='text-center my-4'><button type="submit" className="btn btn-primary w-100 btn-login"><b>Sign Up</b></button></div>
 <p className='price text-center'>Already registered? <b><Link style={{textDecoration: 'none'}} className='price' to="/login">Go to log in</Link></b></p>
-<p className='text-center'>Or sign up with</p>
-<p className='text-center'><i className="bi fs-4 mx-3 bi-google"></i><i className="bi fs-4 mx-3 bi-github"></i></p>
+
 </form><img src={img} className='w-50 p-4' /> 
                         </section>
     </div>

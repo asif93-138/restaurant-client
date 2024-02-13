@@ -1,11 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../AuthProvider';
 import { getAuth, signOut } from "firebase/auth";
 import app from '../firebase.config';
 
 const Header = () => {
-  const {user, loading} = useContext(AuthContext);
+  const {user, loading, cartNumber} = useContext(AuthContext);
+
   function userSO() {
     const auth = getAuth(app);
 signOut(auth).then(() => {
@@ -22,6 +23,7 @@ function myFunction() {
     document.getElementById('scroll').className = "container-fluid px-4 py-2";
   }
 }
+
     return (
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark-tp p-0 container-fluid fixed-top">
         <div id='scroll' className="container-fluid px-4 py-2">
@@ -43,12 +45,15 @@ function myFunction() {
               <li className="nav-item mx-1">
                 <NavLink className={({isActive}) => isActive ? "active-lnk" : "nav-link"} to="/contact"><b>Contact</b></NavLink>
               </li>
+              <li className="mx-2 position-relative">
+              <i className="bi bi-cart4 fs-4"></i><span className='cart-number rounded-circle position-absolute'><b>{cartNumber}</b></span>
+              </li>
             </ul>
 { (!loading) && 
   <>
   { user ?
-    <button onClick={userSO} type='button' className='btn btn-so p-0'><b className=''>Log Out</b> <i className="bi fs-4 ms-2 bi-person-circle"></i></button> :
-    <NavLink className={({isActive}) => isActive ? "active-lnk" : ""} to="/login"><button className="btn btn-dark btn-nav ms-2" type="button"><b>Login</b></button></NavLink>
+     <><Link to='/dashboard/home' className='btn user-b text-white'><button type='button' className='btn nav-link'><b className='user'>User</b><i className="bi fs-4 ms-2 bi-person-circle"></i></button></Link><button onClick={userSO} type='button' className='btn btn-dark btn-nav'><b className=''>Log Out</b> </button></> :
+    <NavLink className={({isActive}) => isActive ? "active-lnk p-0" : ""} to="/login"><button className="btn btn-dark btn-nav ms-3" type="button"><b>Login</b></button></NavLink>
 }
   </>
 }

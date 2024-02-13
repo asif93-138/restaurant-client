@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { Component, useContext, useEffect, useState } from 'react';
 
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
@@ -29,9 +29,12 @@ import { FreeMode, Pagination } from 'swiper/modules';
 import SectionTitle from './SectionTitle';
 import PopularMenu from './PopularMenu';
 import Header from './Header';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../AuthProvider';
 
 function App() {
   const [reviews, setReviews] = useState([]);
+  const {user, cartNumber, setCartNumber} = useContext(AuthContext);
   useEffect(() => {
     fetch('reviews.json')
     .then(res => res.json())
@@ -46,6 +49,32 @@ function App() {
   }
   const customHeight = window.innerWidth * 900 / 1920;
   const customHeight1 = window.innerWidth * 804 / 1920;
+  function cartAddingH() {
+    if (user) {
+      const cartC = {
+        user: user.uid,
+        cart: {_id : '#c35sg6789139rec#', name : 'Caeser Salad', category: 'recommended', price: 100}
+      };
+      fetch('https://bistro-restaurant-server-eight.vercel.app/cart', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(cartC)
+      })
+      .then(res => res.json())
+      .then(data => {
+        // console.log(data);
+        if (data.insertedId) {
+          setCartNumber(cartNumber + 1);
+          alert('Added to cart!');
+        }
+      })
+    }
+    else {
+      alert('Please login first!');
+    }
+  }
   return (
     <>
                 <Helmet>
@@ -130,7 +159,7 @@ function App() {
     <div className="card-body text-center bg-light">
       <h6 className="card-title">Caeser Salad</h6>
       <p className="card-text"><small>Lettuce, Eggs, Parmesan Cheese, Chicken Breast Fillets.</small></p>
-      <button type='button' className="btn btn-primary btn-ch">ADD TO CART</button>
+      <button onClick={cartAddingH} type='button' className="btn btn-primary btn-ch">ADD TO CART</button>
     </div>
   </div>
   <div className="card m-3 border-0">
@@ -138,7 +167,7 @@ function App() {
     <div className="card-body text-center bg-light">
       <h6 className="card-title">Caeser Salad</h6>
       <p className="card-text"><small>Lettuce, Eggs, Parmesan Cheese, Chicken Breast Fillets.</small></p>
-      <button type='button' className="btn btn-primary btn-ch">ADD TO CART</button>
+      <button onClick={cartAddingH} type='button' className="btn btn-primary btn-ch">ADD TO CART</button>
     </div>
   </div>
   <div className="card m-3 border-0">
@@ -146,7 +175,7 @@ function App() {
     <div className="card-body text-center bg-light">
       <h6 className="card-title">Caeser Salad</h6>
       <p className="card-text"><small>Lettuce, Eggs, Parmesan Cheese, Chicken Breast Fillets.</small></p>
-      <button type='button' className="btn btn-primary btn-ch">ADD TO CART</button>
+      <button onClick={cartAddingH} type='button' className="btn btn-primary btn-ch">ADD TO CART</button>
     </div>
   </div>
         </div>
@@ -164,7 +193,7 @@ function App() {
             <p className='m-0'>March 20, 2023</p>
             <p className='m-0'>WHERE CAN I GET SOME?</p>
             <p><small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error voluptate facere, deserunt dolores maiores quod nobis quas quasi. Eaque repellat recusandae ad laudantium tempore consequatur consequuntur omnis ullam maxime tenetur.</small></p>
-            <button type='button' className='btn btn-outline-dark btn-ft'><b>READ MORE</b></button>
+            <Link to='/order'><button type='button' className='btn btn-outline-dark btn-ft'><b>READ MORE</b></button></Link>
           </article>
         </div>
 </section>
