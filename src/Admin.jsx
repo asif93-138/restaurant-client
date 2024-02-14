@@ -14,6 +14,7 @@ const Admin = () => {
     function adminPanel() {
        let x = document.getElementById('admin').value;
        if (x == 'AdminIsAdmin') {setAdmin(true)}
+       else {alert('Access denied!!')}
     }
     useEffect(() => {
         fetch('https://bistro-restaurant-server-eight.vercel.app/orders')
