@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../AuthProvider';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Admin = () => {
     const {user, loading, setAdmin, admin } = useContext(AuthContext);
@@ -8,6 +8,7 @@ const Admin = () => {
     const [payments, setPayments] = useState([]);
     const [messages, setMessages] = useState([]);
     const [earnings, setEarnings] = useState(0);
+    const [dataL, setDataL] = useState(true);
     const navigate = useNavigate();
     if (loading) {return <></>;}
     if (!user) {return navigate('/dashboard');}
@@ -17,15 +18,11 @@ const Admin = () => {
        else {alert('Access denied!!')}
     }
     useEffect(() => {
-        fetch('https://bistro-restaurant-server-eight.vercel.app/orders')
+        fetch('http://localhost:5000/admin')
         .then(res => res.json())
-        .then(data =>setOrders(data))
-        fetch('https://bistro-restaurant-server-eight.vercel.app/payments')
-        .then(res => res.json())
-        .then(data => setPayments(data))
-        fetch('https://bistro-restaurant-server-eight.vercel.app/messages')
-        .then(res => res.json())
-        .then(data => setMessages(data))
+        .then(data => {
+            setOrders(data.orders); setPayments(data.payments); setMessages(data.messages); setDataL(false);
+        })
     }, [])
     useEffect(() => {
         let income = 0;
@@ -38,6 +35,7 @@ const Admin = () => {
         document.getElementsByTagName('article')[0].classList.remove('d-none');
         document.getElementsByTagName('button')[6].classList.add('d-none');
     }
+    if (dataL) {return <h1 className='text-center'>Loading..</h1>}
     return (
         <div className='container text-center p-5'>
             {admin ? <>

@@ -12,14 +12,15 @@ const AuthProvider = ({children}) => {
 	const [cartNumber, setCartNumber] = useState(0); 
 	const [user, setUser] = useState(null);
 	const [loading, setLoading] = useState(true);
-	const [menu, setMenu] = useState([]);
+	const [menu, setMenu] = useState('loading');
 	const [cartA, setCartA] = useState(0);
 	const [arr, setArr] = useState([]);
 	const [pHLoader, setPHLoader] = useState(true);
 	useEffect(() => {
-		fetch('https://bistro-restaurant-server-eight.vercel.app/menu')
+		fetch('http://localhost:5000/menu')
         .then(res => res.json())
         .then(data => {
+			// console.log(data);
 			setMenu(data);
 		})
 		const unsubscribe = onAuthStateChanged(auth, currentUser => {
@@ -30,17 +31,14 @@ const AuthProvider = ({children}) => {
 		}
 	}, [])
 	useEffect(() => {
-		fetch(`https://bistro-restaurant-server-eight.vercel.app/payment/${user?.uid}`)
-        .then(res => res.json())
-        .then(data => setArr(data))
-    }, [user, pHLoader])
-    useEffect(() => {
-		fetch(`https://bistro-restaurant-server-eight.vercel.app/cart/${user?.uid}`)
-		.then(res => res.json())
-        .then(data => {
-			setCart(data); setCartNumber(data.length);
-		})
-    }, [user, cartNumber])
+		if (user) {
+			fetch(`http://localhost:5000/user/${user?.uid}`)
+			.then(res => res.json())
+			.then(data => {
+				setArr(data.payment); setCart(data.cart); setCartNumber(data.cart.length);
+			})
+		}
+	}, [user, pHLoader, cartNumber])
 	useEffect(() => {
         let cost = 0;
         cart.forEach(element => {
@@ -48,7 +46,7 @@ const AuthProvider = ({children}) => {
         }); setCartA(cost);
     }, [cart])
 	const authInfo = { user, setUser, loading, menu, cartNumber, setCartNumber, cart, setCart, admin, setAdmin, cartA, setCartA, arr, setPHLoader, pHLoader};
-
+	if (menu == 'loading') {return <h1 className='text-center'>Loading..</h1>}
 	return (
 	  <AuthContext.Provider value= {authInfo}>
 		{children}

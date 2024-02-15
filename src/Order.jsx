@@ -121,7 +121,7 @@ const Order = () => {
     if (user) {
       const cartC = {user: user.uid, cart : data}
       // console.log(cartID);
-      fetch('https://bistro-restaurant-server-eight.vercel.app/cart', {
+      fetch('http://localhost:5000/cart', {
         method: 'POST',
         headers: {
           'content-type': 'application/json'

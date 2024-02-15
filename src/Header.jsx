@@ -5,12 +5,13 @@ import { getAuth, signOut } from "firebase/auth";
 import app from '../firebase.config';
 
 const Header = () => {
-  const {user, loading, cartNumber} = useContext(AuthContext);
+  const {user, loading, cartNumber, setCartNumber} = useContext(AuthContext);
 
   function userSO() {
     const auth = getAuth(app);
 signOut(auth).then(() => {
   // Sign-out successful.
+  setCartNumber(0);
 }).catch((error) => {
   // An error happened.
 });

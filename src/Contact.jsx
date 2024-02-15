@@ -16,7 +16,7 @@ const Contact = () => {
       const message = form.message.value;
       const contactObj = {name, email, phone, message};
       console.log(user.uid, contactObj);
-      fetch('https://bistro-restaurant-server-eight.vercel.app/contact', {
+      fetch('http://localhost:5000/contact', {
         method: 'POST',
         headers: {
           'content-type': 'application/json'
