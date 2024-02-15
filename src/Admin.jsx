@@ -18,7 +18,7 @@ const Admin = () => {
        else {alert('Access denied!!')}
     }
     useEffect(() => {
-        fetch('http://localhost:5000/admin')
+        fetch('https://bistro-restaurant-server-f60cfz50z-asif93-138.vercel.app/admin')
         .then(res => res.json())
         .then(data => {
             setOrders(data.orders); setPayments(data.payments); setMessages(data.messages); setDataL(false);
