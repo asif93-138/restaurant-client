@@ -55,7 +55,7 @@ function App() {
         user: user.uid,
         cart: {_id : '#c35sg6789139rec#', name : 'Caeser Salad', category: 'recommended', price: 100}
       };
-      fetch('https://bistro-restaurant-server-f60cfz50z-asif93-138.vercel.app/cart', {
+      fetch('http://localhost:5000/cart', {
         method: 'POST',
         headers: {
           'content-type': 'application/json'

@@ -6,7 +6,7 @@ const Cart = () => {
     const { cart, setCartNumber, cartNumber, cartA } = useContext(AuthContext);
     
     function deleteItem(data) {
-        fetch(`https://bistro-restaurant-server-f60cfz50z-asif93-138.vercel.app/cart/${data._id}`, {
+        fetch(`http://localhost:5000/cart/${data._id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

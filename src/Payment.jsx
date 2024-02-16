@@ -6,7 +6,7 @@ const Payment = () => {
     function userPayment() {
         const userPayment =  {user : user.uid, totalPrice: cartA, cardNumber : document.getElementsByTagName('input')[0].value}
         console.log(userPayment);
-        fetch('https://bistro-restaurant-server-f60cfz50z-asif93-138.vercel.app/payment', {
+        fetch('http://localhost:5000/payment', {
             method: 'POST',
             headers: {
               'content-type': 'application/json'
@@ -15,7 +15,7 @@ const Payment = () => {
           })
         .then(res => res.json())
         .then(data => console.log(data))
-        fetch(`https://bistro-restaurant-server-f60cfz50z-asif93-138.vercel.app/payment/${user.uid}`, {
+        fetch(`http://localhost:5000/payment/${user.uid}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

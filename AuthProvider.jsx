@@ -17,7 +17,7 @@ const AuthProvider = ({children}) => {
 	const [arr, setArr] = useState([]);
 	const [pHLoader, setPHLoader] = useState(true);
 	useEffect(() => {
-		fetch('https://bistro-restaurant-server-f60cfz50z-asif93-138.vercel.app/menu')
+		fetch('http://localhost:5000/menu')
         .then(res => res.json())
         .then(data => {
 			// console.log(data);
@@ -32,7 +32,7 @@ const AuthProvider = ({children}) => {
 	}, [])
 	useEffect(() => {
 		if (user) {
-			fetch(`https://bistro-restaurant-server-f60cfz50z-asif93-138.vercel.app/user/${user?.uid}`)
+			fetch(`http://localhost:5000/user/${user?.uid}`)
 			.then(res => res.json())
 			.then(data => {
 				setArr(data.payment); setCart(data.cart); setCartNumber(data.cart.length);
